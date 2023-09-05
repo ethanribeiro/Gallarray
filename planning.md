@@ -12,14 +12,17 @@ Gallarray <i>(art e-commerce)</i></h2>
     * Maximum 2 items per row
     * Filter left sidebar for selecting item categories
 
+* Exhibit page:
+    * Displays exhibit containing all details
+
 * Artists page:
     * Maximum 4 artist cards per row
     * Displays detail of artist's name, rating, where they are from, avatar
 
-* Shopping cart:
-    * Displays list of each item containing the title, image, price, artist(name & avatar)
+* Profile page:
+    * Displays datils about the artist and their belonging exhibits
 
-* Account
+* Account page
 
 
 <h4>MODELS:</h4>
@@ -70,5 +73,8 @@ Gallarray <i>(art e-commerce)</i></h2>
 
 
 <h4>ICEBOX PAGES:</h4>
+
+* Shopping cart:
+    * Displays list of each item containing the title, image, price, artist(name & avatar)
 
 * Account page
