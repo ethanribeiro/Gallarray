@@ -1,6 +1,8 @@
 <h2>P3 Planning:<br/>
 Gallarray <i>(art e-commerce)</i></h2>
 
+<h4>LINK TO TRELLO BOARD: https://trello.com/b/fFhjddUz/project-3</h4>
+
 <h4>PAGES:</h4>
 * Homepage:
     * Nav bar with links to gallery, artists, shopping cart, and account
@@ -25,7 +27,7 @@ Gallarray <i>(art e-commerce)</i></h2>
 * item:
     * image: [artSchema]
     * title: (string, required)
-    * category: (category)
+    * category: [category]
     * price: (number, required)
     * artist: (artist)
 
@@ -39,6 +41,9 @@ Gallarray <i>(art e-commerce)</i></h2>
     * phone: (string, required)
     * place: (string, required)
     * avatar: (string, required)
+
+* category:
+    * name: (string, required)
 
 
 <h4>ICEBOX MODELS:</h4>
