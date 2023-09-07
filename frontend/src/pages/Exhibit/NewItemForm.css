@@ -1,0 +1,29 @@
+.NewItemForm-section {
+    background-color: #eee;
+    padding: 1.5rem;
+}
+
+.NewItemForm-section form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.NewItemForm-section form > label {
+    display: flex;
+    flex-direction: column;
+}
+
+.NewItemForm-section input[type="text"] {
+    line-height: 2rem;
+    padding: 0 .5rem;
+}
+
+.NewItemForm-section input[type="submit"] {
+    line-height: 2rem;
+    padding: 0 .5rem;
+    align-self: self-end;
+    height: 2.2rem;
+    border: 1px solid #333;
+    border-radius: .25rem;
+}

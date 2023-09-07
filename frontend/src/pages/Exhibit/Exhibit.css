@@ -1,0 +1,25 @@
+.exhibit-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1.5rem;
+}
+
+.exhibit-list > a {
+    text-decoration: none;
+    color: #333;
+}
+
+.exhibit-image {
+    width: auto;
+    height: 40vmin;
+    max-height: 18rem;
+}
+
+.exhibit-card {
+    border: 1px solid #333;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: .5rem;
+}
