@@ -1,0 +1,67 @@
+.Item {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas: 
+        "image"
+        "title"
+        "artist"
+        "categories"
+        "price"
+        "createdAt"
+    ;
+}
+
+.Item > img {
+    grid-area: image;
+    max-width: 20rem;
+}
+
+.Item > h2 {
+    grid-area: title;
+}
+
+.Item > h3 {
+    grid-area: price;
+}
+
+.Item > h4 {
+    grid-area: artist;
+}
+
+.Item > h5 {
+    grid-area: categories;
+}
+
+.Item > p:last-of-type {
+    grid-area: createdAt;
+}
+
+.delete {
+    border: 1px solid #ddd;
+    background-color: transparent;
+    padding: 8px 24px;
+    border-radius: 4px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.delete:hover {
+    border: 1px solid #ddd;
+    background-color: black;
+    color: white;
+    transform: scale(1.025, 1.025);
+}
+
+.edit {
+    border: 1px solid #ddd;
+    background-color: transparent;
+    padding: 7px 24px;
+    border-radius: 4px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.edit:hover {
+    border: 1px solid #ddd;
+    background-color: black;
+    color: white;
+    transform: scale(1.025, 1.025);
+}

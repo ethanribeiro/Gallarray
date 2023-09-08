@@ -11,7 +11,7 @@ export default function ExhibitList({ exhibit }){
                         <p>{item.categories}</p>
                         <h2>{item.price}</h2>
                         <h3>By {item.artist}</h3>
-                        <p>{item.createdAt}</p>
+                        <p>{item.createdAt.toString()}</p>
                     </div>
                 </Link>
             ))}

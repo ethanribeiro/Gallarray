@@ -1,13 +1,9 @@
 import {useState, useEffect} from 'react';
-
-import './Exhibit.css';
-
-import Spinner from "../../components/Spinner";
-import ExhibitList from './ExhibitList';
-// import NewItemForm from './NewItemForm';
+import NewItemForm from './NewItemForm';
 import { getExhibit } from '../../utilities/exhibit-service';
+import Spinner from "../../components/Spinner";
 
-export default function Exhibit(props){
+export default function New(props){
     const [exhibit, setExhibit] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -31,8 +27,7 @@ export default function Exhibit(props){
         <Spinner /> 
         ) : (
         <>
-            {/* <NewItemForm updateExhibit={handleRequest}/> */}
-            <ExhibitList exhibit={exhibit} />
+            <NewItemForm updateExhibit={handleRequest}/>
         </>
     );
 }

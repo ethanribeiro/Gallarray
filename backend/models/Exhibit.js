@@ -13,15 +13,15 @@ const exhibitSchema = new mongoose.Schema({
     categories: {type: String, required: true},
     // categories: [String],
     price: {type: Number, required: true},
-    artist: {type: String, required: true},
+    artist: {type: String, required: true}
     // artist: {
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'User',
     // },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
+    // createdAt: {
+    //     type: Date,
+    //     default: Date.now,
+    // },
 }, {
     timestamps: true
 });
