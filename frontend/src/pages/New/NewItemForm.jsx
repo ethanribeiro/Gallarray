@@ -11,7 +11,7 @@ export default function NewItemForm({updateExhibit}) {
     const {user, isLoading, isAuthenticated } = useAuth0();
 
     const initState = {
-        image: "",
+        image: null,
         title: "",
         categories: "",
         price: 0,
@@ -19,10 +19,28 @@ export default function NewItemForm({updateExhibit}) {
         user: user?.sub,
     };
 
+    const [previewSource, setPreviewSource] = useState(null);
     const [newForm, setNewForm] = useState(initState);
+
+    function handleFileInputChange(e) {
+        const file = e.target.files[0];
+        setPreviewFile(file);
+    }
+
+    function setPreviewFile(file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setPreviewSource(reader.result);
+        };
+    }
     
     async function handleSubmit(e){
         e.preventDefault();
+        // // if (!newForm.image) {
+        //     console.log("idk")
+        // // }
+        // const formData = new FormData();
         const dataToSend = {...newForm, user: user.sub}
         await createItem(dataToSend);
         updateExhibit();
@@ -37,11 +55,19 @@ export default function NewItemForm({updateExhibit}) {
 
     return isAuthenticated && !isLoading ? (
         <section className='NewItemForm-section'>
-            <form onSubmit={handleSubmit}>
+            <form 
+                onSubmit={handleSubmit} 
+                autocomplete="off"
+                encType='multipart/form-data'
+            >
                 <label htmlFor='image'>
                     Exhibit Image:
-                    <input type='text' name="image" id="image" value={newForm.image} onChange={handleChange} placeholder='Uplaod Image For Your Exhibit' />
+                    <input type='file' name="image" id="image" accept="image/*" value={newForm.image} onChange={handleFileInputChange}/>
+                    {/* <input type='file' name="image" id="image" value={newForm.image} accept="image/*" onChange={handleChange}/> */}
                 </label>
+                {previewSource && (
+                    <img src={previewSource} alt="chosen" style={{ height: '300px' }} />
+                )}
                 <label htmlFor='title'>
                     Exhibit Title:
                     <input type='text' name="title" id="title" placeholder='Enter Title' value={newForm.title} onChange={handleChange} required/>
@@ -61,5 +87,5 @@ export default function NewItemForm({updateExhibit}) {
                 <input type='submit' value="Create Item" />
             </form>
         </section>
-    ): null
+    ) : null;
 }
