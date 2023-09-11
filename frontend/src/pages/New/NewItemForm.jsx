@@ -5,13 +5,14 @@ import { createItem } from "../../utilities/exhibit-service";
 import "./NewItemForm.css";
 import { useAuth0 } from '@auth0/auth0-react';
 
+// Cloudinary image manipulation source: https://medium.com/@aalam-info-solutions-llp/how-to-upload-images-to-cloudinary-with-react-js-ad402f775818
 
 export default function NewItemForm({updateExhibit}) {
     const navigate = useNavigate()
     const {user, isLoading, isAuthenticated } = useAuth0();
 
     const initState = {
-        image: null,
+        image: "",
         title: "",
         categories: "",
         price: 0,
@@ -19,37 +20,40 @@ export default function NewItemForm({updateExhibit}) {
         user: user?.sub,
     };
 
-    const [previewSource, setPreviewSource] = useState(null);
+    // const [previewSource, setPreviewSource] = useState(null);
     const [newForm, setNewForm] = useState(initState);
+    // const [formData, setfromData] = useState();
 
-    function handleFileInputChange(e) {
-        const file = e.target.files[0];
-        setPreviewFile(file);
-    }
+    // function handleFileInputChange(e) {
+    //     const file = e.target.files[0];
+    //     setPreviewFile(file);
+    //     console.log(setPreviewFile)
+    // }
 
-    function setPreviewFile(file) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setPreviewSource(reader.result);
-        };
-    }
-    
+    // function setPreviewFile(file) {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = () => {
+    //         setPreviewSource(reader.result);
+    //     };
+    // }
+
     async function handleSubmit(e){
         e.preventDefault();
-        // // if (!newForm.image) {
-        //     console.log("idk")
-        // // }
-        // const formData = new FormData();
         const dataToSend = {...newForm, user: user.sub}
         await createItem(dataToSend);
+        console.log(dataToSend);
         updateExhibit();
         setNewForm(initState);
         navigate('/');
     }
 
     function handleChange(e){
+        // console.log(e.target.files)
+        const formData = new FormData();
         const updatedData = { ...newForm, [e.target.name]: e.target.value }
+        const file = e.target.files[0];
+        setfromData({ ...formData, image: file });
         setNewForm(updatedData);
     }
 
@@ -62,12 +66,11 @@ export default function NewItemForm({updateExhibit}) {
             >
                 <label htmlFor='image'>
                     Exhibit Image:
-                    <input type='file' name="image" id="image" accept="image/*" value={newForm.image} onChange={handleFileInputChange}/>
-                    {/* <input type='file' name="image" id="image" value={newForm.image} accept="image/*" onChange={handleChange}/> */}
+                    <input type='file' name="image" id="image" value={newForm.image} onChange={handleChange}/>
                 </label>
-                {previewSource && (
+                {/* {previewSource && (
                     <img src={previewSource} alt="chosen" style={{ height: '300px' }} />
-                )}
+                )} */}
                 <label htmlFor='title'>
                     Exhibit Title:
                     <input type='text' name="title" id="title" placeholder='Enter Title' value={newForm.title} onChange={handleChange} required/>

@@ -24,22 +24,20 @@ async function uploadPhoto(req, res, next) {
     let response = await streamUpload(req);
     // console.log(response);
     
-    const foundPost = await Post.findById(req.params.id)
+    const foundExhibit = await Exhibit.findById(req.params.id)
     // console.log(foundPost)
 
     // data parsing from the response to communicate with db!
-    const photoData = {...req.body, url: response.url}
+    const photoData = {...req.body, image: response.url}
     // create new subdocument (object) from the req.body data + cloudinary service response
 
     // mutate document array
-    foundPost.images.push(photoData)
+    foundExhibit.image.push(photoData)
     
     // write changes to db
-    await foundPost.save()
+    await foundExhibit.save()
 
     // take user back to detail page to see updated content
-    res.redirect(`/posts/${req.params.id}`);
-    
   } catch (err) {
     console.log(err);
     next(Error(err));
